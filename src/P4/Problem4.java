@@ -1,15 +1,16 @@
 package P4;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Problem4 {
     static public void main(String[] args) {
-        ArrayList<Integer> dimensions = readRectanglesDimensions();
+        Rectangle rectA = readRectangleDimensions();
+        Rectangle rectB = readRectangleDimensions();
 
-        Rectangle rectA = new Rectangle(dimensions.get(0), dimensions.get(1));
-        Rectangle rectB = new Rectangle(dimensions.get(2), dimensions.get(3));
+        compareRectangles(rectA, rectB);
+    }
 
+    private static void compareRectangles(Rectangle rectA, Rectangle rectB) {
         switch (rectA.compareTo(rectB)) {
             case 1:
                 System.out.println(rectA.getName() + " is greater than " + rectB.getName());
@@ -24,32 +25,25 @@ public class Problem4 {
                 break;
         }
     }
-    static public ArrayList<Integer> readRectanglesDimensions() {
-        ArrayList<Integer> dimensions = new ArrayList<>();
 
+    static public Rectangle readRectangleDimensions() {
         // Reading input from the user
-        for (char i = 'A'; i < 'C'; i++) {
-            System.out.print("Enter rectangle " + i + " dimensions to operate on: ");
-            Scanner myScanner = new Scanner(System.in);
+        System.out.print("Enter rectangle " + Rectangle.rectangleLetter + " dimensions to operate on: ");
+        Scanner myScanner = new Scanner(System.in);
 
-            int firstDimension;
-            int secondDimension;
+        int firstDimension, secondDimension;
 
-            try {
-                // Setting the first rectangle dimensions
-                firstDimension = myScanner.nextInt();
-                secondDimension = myScanner.nextInt();
-            } catch (Exception e) {
-                // Setting the default dimensions for the first rectangle
-                firstDimension = 5;
-                secondDimension = 6;
-                System.out.println("Rectangle initialized with dimensions " + firstDimension + ", " + secondDimension);
-            }
-
-            dimensions.add(firstDimension);
-            dimensions.add(secondDimension);
+        try {
+            // Setting the first rectangle dimensions
+            firstDimension = myScanner.nextInt();
+            secondDimension = myScanner.nextInt();
+        } catch (Exception e) {
+            // Setting the default dimensions for the first rectangle
+            firstDimension = 5;
+            secondDimension = 6;
+            System.out.println("Rectangle initialized with dimensions " + firstDimension + ", " + secondDimension);
         }
 
-        return dimensions;
+        return new Rectangle(firstDimension, secondDimension);
     }
 }

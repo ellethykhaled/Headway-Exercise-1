@@ -2,7 +2,7 @@ package P4;
 
 public class Rectangle implements Comparable<Rectangle> {
     // A static char to hold the rectangle name
-    private static char rectangleLetter = 'A';
+    static char rectangleLetter = 'A';
 
     private final int width;
     private final int height;
