@@ -25,12 +25,17 @@ public class Problem1 {
             testUpdateStudentById(studentDAO, 50);
             testUpdateStudentById(studentDAO, -1);
 
+            testDeleteStudentById(studentDAO, 49);
+            testSelectAllStudents(studentDAO);
+            testDeleteStudentById(studentDAO, -1);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     static void testSelectAllStudents(StudentDAO studentDAO) {
+        System.out.println("Testing Select All Students");
         List<Student> students = studentDAO.findAll();
         if (students.size() > 0)
             System.out.println("List of students:");
@@ -41,6 +46,7 @@ public class Problem1 {
     }
 
     static void testSelectStudentById(StudentDAO studentDAO, int id) {
+        System.out.println("Testing Select Student By Id");
         Student student = studentDAO.findById(id);
         if (student.getId() == 0)
             System.out.println("No student found by id " + id);
@@ -49,6 +55,7 @@ public class Problem1 {
     }
 
     static void testUpdateStudentById(StudentDAO studentDAO, int id) {
+        System.out.println("Testing Update Student By Id");
         Student student = studentDAO.findById(id);
         if (student.getId() == 0) {
             System.out.println("No student found by id " + id);
@@ -75,5 +82,10 @@ public class Problem1 {
         }
         System.out.println("Student info after update");
         System.out.println(student);
+    }
+
+    static void testDeleteStudentById(StudentDAO studentDAO, int id) {
+        System.out.println("Testing Delete Student By Id");
+        studentDAO.delete(id);
     }
 }

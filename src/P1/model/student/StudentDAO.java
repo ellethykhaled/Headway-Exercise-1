@@ -90,6 +90,12 @@ public class StudentDAO extends DataAccessObject<Student> {
 
     @Override
     public void delete(int id) {
-
+        try(PreparedStatement statement = this.connection.prepareStatement(DELETE)) {
+            statement.setInt(1, id);
+            statement.execute();
+        }catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }
