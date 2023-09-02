@@ -16,9 +16,14 @@ public class Problem1 {
             Connection connection = databaseConnectionManager.getConnection();
 
             StudentDAO studentDAO = new StudentDAO(connection);
+
             testSelectAllStudents(studentDAO);
+
             testSelectStudentById(studentDAO, 5);
             testSelectStudentById(studentDAO, -1);
+
+            testUpdateStudentById(studentDAO, 50);
+            testUpdateStudentById(studentDAO, -1);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,6 +45,35 @@ public class Problem1 {
         if (student.getId() == 0)
             System.out.println("No student found by id " + id);
         else
+            System.out.println(student);
+    }
+
+    static void testUpdateStudentById(StudentDAO studentDAO, int id) {
+        Student student = studentDAO.findById(id);
+        if (student.getId() == 0) {
+            System.out.println("No student found by id " + id);
+            return;
+        }
+        System.out.println("Student info before update");
+        System.out.println(student);
+
+        // Just a toggling condition
+        if (student.getAge() > 30)
+            student.setAge(student.getAge() - 20);
+        else
+            student.setAge(student.getAge() + 20);
+
+        /* Uncomment the following line to generate unique constraint violation exception **/
+//        student.setFacultySerialNumber(149);
+
+        try {
+            student = studentDAO.update(student);
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to update student info");
+            return;
+        }
+        System.out.println("Student info after update");
         System.out.println(student);
     }
 }

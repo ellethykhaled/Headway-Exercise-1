@@ -13,7 +13,7 @@ public class StudentDAO extends DataAccessObject<Student> {
 
     private static final String GET_ALL = "SELECT * FROM students";
     private static final String GET_ONE = "SELECT * FROM students WHERE id=?";
-    private static final String UPDATE = "UPDATE customer SET name=?," +
+    private static final String UPDATE = "UPDATE students SET name=?," +
             " age=?, grade=?, faculty_serial_number=? WHERE id=?";
     private static final String DELETE = "DELETE FROM students WHERE id=?";
 
@@ -66,7 +66,21 @@ public class StudentDAO extends DataAccessObject<Student> {
 
     @Override
     public Student update(Student dto) {
-        return null;
+        Student student;
+        try(PreparedStatement statement = this.connection.prepareStatement(UPDATE)) {
+            statement.setString(1, dto.getName());
+            statement.setInt(2, dto.getAge());
+            statement.setFloat(3, dto.getGrade());
+            statement.setInt(4, dto.getFacultySerialNumber());
+            statement.setInt(5, dto.getId());
+
+            statement.execute();
+            student = this.findById(dto.getId());
+        }catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return student;
     }
 
     @Override
