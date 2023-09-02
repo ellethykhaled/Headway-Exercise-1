@@ -6,14 +6,19 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {
+    private static final String HOST_NAME = "localhost";
+    private static final String DATABASE_NAME = "company";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "password";
+
     private final String url;
     private final Properties properties;
 
-    DatabaseConnectionManager(String host, String databaseName, String username, String password) {
-        this.url = "jdbc:postgresql://" + host + "/" + databaseName;
+    DatabaseConnectionManager() {
+        this.url = "jdbc:postgresql://" + HOST_NAME + "/" + DATABASE_NAME;
         this.properties = new Properties();
-        properties.setProperty("user", username);
-        properties.setProperty("password", password);
+        properties.setProperty("user", USERNAME);
+        properties.setProperty("password", PASSWORD);
     }
 
     public Connection getConnection() throws SQLException {

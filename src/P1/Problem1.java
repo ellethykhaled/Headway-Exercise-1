@@ -6,8 +6,7 @@ import java.sql.SQLException;
 public class Problem1 {
 
     public static void main(String... args) {
-        DatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager(
-                "localhost", "Company", "postgres", "password");
+        DatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager();
 
         try {
             Connection connection = databaseConnectionManager.getConnection();
