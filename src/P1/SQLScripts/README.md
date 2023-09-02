@@ -24,7 +24,7 @@
 `psql -h localhost -U postgres -d company -f data_insertion.sql`
 
 ### Enrolling students into departments
-`psql -h localhost -U postgres -d company -f data_insertion.sql`
+`psql -h localhost -U postgres -d company -f enrol.sql`
 
 ### Drop database and tables
 `psql -h localhost -U postgres db_drop.sql`
