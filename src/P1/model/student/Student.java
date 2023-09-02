@@ -61,4 +61,16 @@ public class Student implements DataTransferObject {
     public void setFacultySerialNumber(int facultySerialNumber) {
         this.facultySerialNumber = facultySerialNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", grade=" + grade +
+                ", departments=" + departments +
+                ", facultySerialNumber=" + facultySerialNumber +
+                '}';
+    }
 }
