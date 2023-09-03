@@ -2,14 +2,11 @@ package P1.model.student;
 
 import P1.utils.DataTransferObject;
 
-import java.util.ArrayList;
-
 public class Student implements DataTransferObject {
     private int id;
     private String name;
     private int age;
     private float grade;
-    private ArrayList<String> departments;
     private int facultySerialNumber;
 
     @Override
@@ -46,14 +43,6 @@ public class Student implements DataTransferObject {
         this.grade = grade;
     }
 
-    public ArrayList<String> getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(ArrayList<String> departments) {
-        this.departments = departments;
-    }
-
     public int getFacultySerialNumber() {
         return facultySerialNumber;
     }
@@ -69,7 +58,6 @@ public class Student implements DataTransferObject {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", grade=" + grade +
-                ", departments=" + departments +
                 ", facultySerialNumber=" + facultySerialNumber +
                 '}';
     }
