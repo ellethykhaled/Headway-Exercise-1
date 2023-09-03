@@ -9,19 +9,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDAO extends DataAccessObject<Student> {
+public class StudentDAO extends DataAccessObject {
 
     private static final String GET_ALL = "SELECT * FROM students";
-    private static final String GET_ONE = "SELECT * FROM students WHERE id=?";
-    private static final String UPDATE = "UPDATE students SET name=?," +
-            " age=?, grade=?, faculty_serial_number=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM students WHERE id=?";
+    private static final String GET_ONE = "SELECT * FROM students WHERE id = ?";
+    private static final String UPDATE = "UPDATE students SET name = ?," +
+            " age = ?, grade = ?, faculty_serial_number = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM students WHERE id = ?";
 
     public StudentDAO(Connection connection) {
         super(connection);
     }
 
-    @Override
     public Student findById(int id) {
         Student student = new Student();
         try(PreparedStatement statement = this.connection.prepareStatement(GET_ONE)) {
@@ -41,7 +40,6 @@ public class StudentDAO extends DataAccessObject<Student> {
         return student;
     }
 
-    @Override
     public List<Student> findAll() {
         ArrayList<Student> list = new ArrayList<>();
         try(PreparedStatement statement = this.connection.prepareStatement(GET_ALL)) {
@@ -64,7 +62,6 @@ public class StudentDAO extends DataAccessObject<Student> {
         return list;
     }
 
-    @Override
     public Student update(Student dto) {
         Student student;
         try(PreparedStatement statement = this.connection.prepareStatement(UPDATE)) {
@@ -83,12 +80,6 @@ public class StudentDAO extends DataAccessObject<Student> {
         return student;
     }
 
-    @Override
-    public Student create(Student dto) {
-        return null;
-    }
-
-    @Override
     public void delete(int id) {
         try(PreparedStatement statement = this.connection.prepareStatement(DELETE)) {
             statement.setInt(1, id);

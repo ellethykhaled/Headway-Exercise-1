@@ -9,7 +9,7 @@ public class Student implements DataTransferObject {
     private String name;
     private int age;
     private float grade;
-    private ArrayList<Integer> departments;
+    private ArrayList<String> departments;
     private int facultySerialNumber;
 
     @Override
@@ -46,11 +46,11 @@ public class Student implements DataTransferObject {
         this.grade = grade;
     }
 
-    public ArrayList<Integer> getDepartments() {
+    public ArrayList<String> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(ArrayList<Integer> departments) {
+    public void setDepartments(ArrayList<String> departments) {
         this.departments = departments;
     }
 
